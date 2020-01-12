@@ -1,11 +1,14 @@
 package com.rudycinho.springsimplecrud.models.pojo;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +38,9 @@ public class User {
 	
 	@Column(unique = true)
 	private String email;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Reservation> reservations;
 	
 	public User() {}
 }
