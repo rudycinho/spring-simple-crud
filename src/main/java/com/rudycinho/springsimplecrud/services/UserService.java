@@ -11,7 +11,7 @@ import com.rudycinho.springsimplecrud.repositories.UserRepository;
 @Service
 public class UserService {
 	@Autowired
-	public UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	public User create(User user) {
 		return userRepository.save(user);
