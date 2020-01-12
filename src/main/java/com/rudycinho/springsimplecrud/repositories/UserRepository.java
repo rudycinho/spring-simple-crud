@@ -9,12 +9,12 @@ import org.springframework.data.repository.query.Param;
 import com.rudycinho.springsimplecrud.models.pojo.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
-	@Query("Select u"+
-		   "from User u")
+	@Query("SELECT u "+
+		   "FROM User u")
 	public List<User> getAll();
 	
-	@Query("Select u"+
-	       "from User u"+
-		   "where u.id =:id")
+	@Query("SELECT u "+
+	       "FROM User u "+
+		   "WHERE u.id=:id")
 	public User get(@Param( "id") int id);
 }

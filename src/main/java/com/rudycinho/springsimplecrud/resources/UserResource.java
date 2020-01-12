@@ -24,7 +24,7 @@ import com.rudycinho.springsimplecrud.services.UserService;
 
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserResource {
 	
 	@Autowired
@@ -32,6 +32,7 @@ public class UserResource {
 	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody UserVO userVO){
+		System.out.println(userVO);
 		User user = new User(userVO);
 		user = userService.create(user);
 		UserDTO userDTO = new UserDTO(user);
