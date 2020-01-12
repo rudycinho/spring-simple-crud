@@ -51,4 +51,19 @@ public class UserResource {
 		return response;
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable("id")int id){
+		ResponseEntity<?> response;
+		User user = userService.get(id);
+		if(user==null) {
+			Map<String,String> errors = new HashMap<>();
+			errors.put("Errors", "The user does not exist");
+			response = new ResponseEntity<>(errors,HttpStatus.NOT_FOUND);
+		}else {
+			userService.delete(user);
+			UserDTO userDTO = new UserDTO(user);
+			response = new ResponseEntity<>(userDTO,HttpStatus.OK);
+		}
+		return response;
+	}
 }
