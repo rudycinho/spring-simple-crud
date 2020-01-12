@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import com.rudycinho.springsimplecrud.models.vo.UserVO;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -43,4 +46,13 @@ public class User {
 	private Set<Reservation> reservations;
 	
 	public User() {}
+	
+	public User(UserVO userVO) {
+		this.name           = userVO.getName();
+		this.lastName       = userVO.getName();
+		this.identification = userVO.getIdentification();
+		this.address        = userVO.getAddress();
+		this.phone          = userVO.getPhone();
+		this.email          = userVO.getEmail();
+	}
 }
