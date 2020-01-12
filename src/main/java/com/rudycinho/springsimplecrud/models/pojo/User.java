@@ -1,4 +1,4 @@
-package com.rudycinho.springsimplecrud.models.dto;
+package com.rudycinho.springsimplecrud.models.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
