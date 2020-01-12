@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +26,11 @@ public class Reservation {
 	private int id;
 	
 	@Column(name = "entry_date")
+	@Temporal(TemporalType.DATE)
 	private Date entryDate;
 	
 	@Column(name = "departure_date")
+	@Temporal(TemporalType.DATE)
 	private Date departureDate;
 	
 	@Column(name = "number_persons")
