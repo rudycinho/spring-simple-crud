@@ -48,6 +48,10 @@ public class User {
 	public User() {}
 	
 	public User(UserVO userVO) {
+		setUser(userVO);
+	}
+	
+	public void setUser(UserVO userVO) {
 		this.name           = userVO.getName();
 		this.lastName       = userVO.getName();
 		this.identification = userVO.getIdentification();
