@@ -9,12 +9,9 @@ import org.springframework.data.repository.query.Param;
 import com.rudycinho.springsimplecrud.models.pojo.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
-	@Query("Select r"+
-		   "from Reservation r")
+	@Query("SELECT r FROM Reservation r")
 	public List<Reservation> getAll();
 	
-	@Query("Select r"+
-	       "from Reservation r"+
-		   "where r.id :=id")
+	@Query("SELECT r FROM Reservation r WHERE r.id=:id")
 	public Reservation get( @Param("id") int id);
 }
