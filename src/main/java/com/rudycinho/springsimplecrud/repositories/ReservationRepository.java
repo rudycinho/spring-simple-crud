@@ -12,6 +12,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	@Query("SELECT r FROM Reservation r")
 	public List<Reservation> getAll();
 	
-	@Query("SELECT r FROM Reservation r WHERE r.id=id")
+	@Query("SELECT r FROM Reservation r WHERE r.id=:id")
 	public Reservation get( @Param("id") int id);
 }

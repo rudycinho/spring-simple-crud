@@ -23,14 +23,14 @@ import lombok.Setter;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id; 
+	private int id; 
 	
 	private String name;
 	
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String identification;
 	
 	@Column(nullable = true)
@@ -39,7 +39,7 @@ public class User {
 	@Column(nullable = true)
 	private String phone;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String email;
 	
 	@OneToMany(mappedBy = "user")

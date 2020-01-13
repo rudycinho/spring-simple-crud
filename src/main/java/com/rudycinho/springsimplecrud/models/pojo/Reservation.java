@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.rudycinho.springsimplecrud.models.vo.ReservationVO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,4 +46,15 @@ public class Reservation {
 	private User user;
 	
 	public Reservation() {}
+	
+	public Reservation(ReservationVO reservationVO) {
+		setReservation(reservationVO);
+	}
+	
+	public void setReservation(ReservationVO reservationVO) {
+		this.entryDate    = reservationVO.getEntryDate();
+		this.departureDate= reservationVO.getDepartureDate();
+		this.numberPersons= reservationVO.getNumberPersons();
+		this.descripcion  = reservationVO.getDescripcion();
+	}
 }
