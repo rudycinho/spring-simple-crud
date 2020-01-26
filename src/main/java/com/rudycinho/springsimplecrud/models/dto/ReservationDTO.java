@@ -7,6 +7,11 @@ import com.rudycinho.springsimplecrud.models.pojo.Reservation;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for reservation
+ * @author rudy
+ *
+ */
 @Setter
 @Getter
 public class ReservationDTO {
@@ -16,6 +21,10 @@ public class ReservationDTO {
 	private int numberPersons;
 	private String descripcion;
 	
+	/**
+	 * Construct a reservation with data from reservation pojo
+	 * @param reservation Reservation POJO
+	 */
 	public ReservationDTO(Reservation reservation) {
 		this.id            = reservation.getId();
 		this.entryDate     = reservation.getEntryDate();

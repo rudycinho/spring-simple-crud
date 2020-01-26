@@ -22,7 +22,11 @@ import com.rudycinho.springsimplecrud.models.pojo.User;
 import com.rudycinho.springsimplecrud.models.vo.UserVO;
 import com.rudycinho.springsimplecrud.services.UserService;
 
-
+/**
+ * Class representing the user web service
+ * @author rudy
+ *
+ */
 @RestController
 @RequestMapping("/api/users")
 public class UserResource {
@@ -30,6 +34,11 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * Method to create a user
+	 * @param userVO Visual Object of User
+	 * @return ResponseEntity with user data or error message with status
+	 */
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody UserVO userVO){
 		User user = new User(userVO);
@@ -38,6 +47,12 @@ public class UserResource {
 		return new ResponseEntity<>(userDTO,HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Method to update a user
+	 * @param id User id
+	 * @param userVO Visual Object of User
+	 * @return ResponseEntity with user data or error message with status
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UserVO userVO){
 		ResponseEntity<?> response;
@@ -55,6 +70,11 @@ public class UserResource {
 		return response;
 	}
 	
+	/**
+	 * Method to deleted a user
+	 * @param id User id
+	 * @return  ResponseEntity with user data or error message with status
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id")int id){
 		ResponseEntity<?> response;
@@ -71,6 +91,11 @@ public class UserResource {
 		return response;
 	}
 	
+	/**
+	 * Method to get a user by id
+	 * @param id User id
+	 * @return ResponseEntity with user data or error message with status
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> get(@PathVariable("id")int id){
 		ResponseEntity<?> response;
@@ -86,6 +111,10 @@ public class UserResource {
 		return response;
 	}
 	
+	/**
+	 * Method to get all users
+	 * @return ResponseEntity with users data or error message with status
+	 */
 	@GetMapping
 	public ResponseEntity<?> get(){
 		ResponseEntity<?> response;

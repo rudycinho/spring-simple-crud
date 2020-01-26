@@ -20,6 +20,11 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "users")
+/**
+ * Class representing User name
+ * @author rudy
+ *
+ */
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,13 +50,24 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private Set<Reservation> reservations;
 	
+	/**
+	 * Construct a empty user
+	 */
 	public User() {}
 	
+	/**
+	 * Construct a user with data from visual object
+	 * @param userVO visual object that content the data
+	 */
 	public User(UserVO userVO) {
 		setUser(userVO);
 	}
 	
-	public void setUser(UserVO userVO) {
+	/**
+	 * Method that modifies the user data from a visual object
+	 * @param userVO visual object that content the data
+	 */
+	public  void setUser(UserVO userVO) {
 		this.name           = userVO.getName();
 		this.lastName       = userVO.getName();
 		this.identification = userVO.getIdentification();

@@ -3,6 +3,11 @@ package com.rudycinho.springsimplecrud.models.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Visual Object representing the user
+ * @author rudy
+ *
+ */
 @Setter
 @Getter
 public class UserVO {

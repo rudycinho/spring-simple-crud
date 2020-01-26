@@ -22,6 +22,11 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "reservations")
+/**
+ * Class representing Reservation name
+ * @author rudy
+ *
+ */
 public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,12 +50,23 @@ public class Reservation {
 	@JoinColumn(name = "id_user")
 	private User user;
 	
+	/**
+	 * Construct a empty reservation
+	 */
 	public Reservation() {}
 	
+	/**
+	 * Construct a reservation with data from visual object
+	 * @param reservationVO visual object that content the data
+	 */
 	public Reservation(ReservationVO reservationVO) {
 		setReservation(reservationVO);
 	}
 	
+	/**
+	 * Method that modifies the reservation data from a visual object
+	 * @param reservationVO visual object that content the data
+	 */
 	public void setReservation(ReservationVO reservationVO) {
 		this.entryDate    = reservationVO.getEntryDate();
 		this.departureDate= reservationVO.getDepartureDate();

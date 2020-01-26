@@ -22,6 +22,11 @@ import com.rudycinho.springsimplecrud.models.pojo.Reservation;
 import com.rudycinho.springsimplecrud.models.vo.ReservationVO;
 import com.rudycinho.springsimplecrud.services.ReservationService;
 
+/**
+ * Class representing the reservation web service
+ * @author rudy
+ *
+ */
 @RestController
 @RequestMapping("/api/reservations")
 public class ReservationResource {
@@ -29,6 +34,11 @@ public class ReservationResource {
 	@Autowired
 	private ReservationService reservationService;
 	
+	/**
+	 * Method to create reservation
+	 * @param reservationVO Visual Object of Reservation
+	 * @return ResponseEntity with reservation data or error message with status
+	 */
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody ReservationVO reservationVO){
 		Reservation reservation = new Reservation(reservationVO);
@@ -37,6 +47,12 @@ public class ReservationResource {
 		return new ResponseEntity<>(reservationDTO,HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Method to update a reservation
+	 * @param id Reservation id
+	 * @param reservationVO Visual Object of Reservation
+	 * @return ResponseEntity with reservation data or error message with status
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ReservationVO reservationVO){
 		ResponseEntity<?> response;
@@ -54,6 +70,11 @@ public class ReservationResource {
 		return response;
 	}
 	
+	/**
+	 * Method to deleted a reservation
+	 * @param id Reservation id
+	 * @return ResponseEntity with reservation data or error message with status
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id")int id){
 		ResponseEntity<?> response;
@@ -70,6 +91,11 @@ public class ReservationResource {
 		return response;
 	}
 	
+	/**
+	 * Method to get a reservation by id
+	 * @param id Reservation id
+	 * @return ResponseEntity with reservation data or error message with status
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> get(@PathVariable("id")int id){
 		ResponseEntity<?> response;
@@ -85,6 +111,10 @@ public class ReservationResource {
 		return response;
 	}
 	
+	/**
+	 * Method to get all reservations
+	 * @return ResponseEntity with reservations data or error message with status
+	 */
 	@GetMapping
 	public ResponseEntity<?> get(){
 		ResponseEntity<?> response;
