@@ -22,6 +22,11 @@ import com.rudycinho.springsimplecrud.models.pojo.Reservation;
 import com.rudycinho.springsimplecrud.models.vo.ReservationVO;
 import com.rudycinho.springsimplecrud.services.ReservationService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Class representing the reservation web service
  * @author rudy
@@ -29,6 +34,7 @@ import com.rudycinho.springsimplecrud.services.ReservationService;
  */
 @RestController
 @RequestMapping("/api/reservations")
+@Api(tags = "reservation")
 public class ReservationResource {
 	
 	@Autowired
@@ -40,6 +46,11 @@ public class ReservationResource {
 	 * @return ResponseEntity with reservation data or error message with status
 	 */
 	@PostMapping
+	@ApiOperation(value = "Create reservation", notes = "Service to create a new reservation")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Reservation created"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> create(@RequestBody ReservationVO reservationVO){
 		Reservation reservation = new Reservation(reservationVO);
 		reservation = reservationService.create(reservation);
@@ -53,7 +64,13 @@ public class ReservationResource {
 	 * @param reservationVO Visual Object of Reservation
 	 * @return ResponseEntity with reservation data or error message with status
 	 */
-	@PutMapping("/{id}")
+	@PutMapping("/{id}")	
+	@ApiOperation(value = "Update reservation", notes = "Service to update a reservation")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "Reservation updated"),
+			@ApiResponse(code = 404, message = "Reservation  not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ReservationVO reservationVO){
 		ResponseEntity<?> response;
 		Reservation reservation = reservationService.get(id);
@@ -75,7 +92,13 @@ public class ReservationResource {
 	 * @param id Reservation id
 	 * @return ResponseEntity with reservation data or error message with status
 	 */
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}")	
+	@ApiOperation(value = "Delete reservation", notes = "Service to delete a reservation")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Reservation deleted"),
+			@ApiResponse(code = 404, message = "Reservation not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> delete(@PathVariable("id")int id){
 		ResponseEntity<?> response;
 		Reservation reservation = reservationService.get(id);
@@ -97,6 +120,11 @@ public class ReservationResource {
 	 * @return ResponseEntity with reservation data or error message with status
 	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Get all reservations", notes = "Service to get all reservations")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "All retrieved reservations"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> get(@PathVariable("id")int id){
 		ResponseEntity<?> response;
 		Reservation reservation = reservationService.get(id);
@@ -116,6 +144,12 @@ public class ReservationResource {
 	 * @return ResponseEntity with reservations data or error message with status
 	 */
 	@GetMapping
+	@ApiOperation(value = "Get reservation", notes = "Service to get a just reservation")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieved reservation"),
+			@ApiResponse(code = 404, message = "Reservation not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> get(){
 		ResponseEntity<?> response;
 		List<Reservation> reservations = reservationService.getAll();
