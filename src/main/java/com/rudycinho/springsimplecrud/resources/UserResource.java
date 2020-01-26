@@ -22,6 +22,11 @@ import com.rudycinho.springsimplecrud.models.pojo.User;
 import com.rudycinho.springsimplecrud.models.vo.UserVO;
 import com.rudycinho.springsimplecrud.services.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Class representing the user web service
  * @author rudy
@@ -29,6 +34,7 @@ import com.rudycinho.springsimplecrud.services.UserService;
  */
 @RestController
 @RequestMapping("/api/users")
+@Api(tags = "user")
 public class UserResource {
 	
 	@Autowired
@@ -40,6 +46,11 @@ public class UserResource {
 	 * @return ResponseEntity with user data or error message with status
 	 */
 	@PostMapping
+	@ApiOperation(value = "Create user", notes = "Service to create a new user")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "User created"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> create(@RequestBody UserVO userVO){
 		User user = new User(userVO);
 		user = userService.create(user);
@@ -54,6 +65,12 @@ public class UserResource {
 	 * @return ResponseEntity with user data or error message with status
 	 */
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Update user", notes = "Service to update a user")
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = "User updated"),
+			@ApiResponse(code = 404, message = "User not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UserVO userVO){
 		ResponseEntity<?> response;
 		User user = userService.get(id);
@@ -76,6 +93,12 @@ public class UserResource {
 	 * @return  ResponseEntity with user data or error message with status
 	 */
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Delete user", notes = "Service to delete a user")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "User deleted"),
+			@ApiResponse(code = 404, message = "User not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> delete(@PathVariable("id")int id){
 		ResponseEntity<?> response;
 		User user = userService.get(id);
@@ -97,13 +120,18 @@ public class UserResource {
 	 * @return ResponseEntity with user data or error message with status
 	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Get all users", notes = "Service to get all users")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "All retrieved user"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> get(@PathVariable("id")int id){
 		ResponseEntity<?> response;
 		User user = userService.get(id);
 		if(user==null) {
 			Map<String,String> errors = new HashMap<>();
 			errors.put("Errors", "The user does not exist");
-			response = new ResponseEntity<>(errors,HttpStatus.NOT_FOUND);
+			response = new ResponseEntity<>(errors,HttpStatus.OK);
 		}else {
 			UserDTO userDTO = new UserDTO(user);
 			response = new ResponseEntity<>(userDTO,HttpStatus.OK);
@@ -116,6 +144,12 @@ public class UserResource {
 	 * @return ResponseEntity with users data or error message with status
 	 */
 	@GetMapping
+	@ApiOperation(value = "Get user", notes = "Service to get a just user")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Retrieved user"),
+			@ApiResponse(code = 404, message = "User not found"),
+			@ApiResponse(code = 400, message = "Bad request")
+	})
 	public ResponseEntity<?> get(){
 		ResponseEntity<?> response;
 		List<User> users = userService.getAll();
