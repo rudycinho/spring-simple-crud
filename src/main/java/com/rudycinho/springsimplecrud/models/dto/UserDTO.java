@@ -5,6 +5,11 @@ import com.rudycinho.springsimplecrud.models.pojo.User;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Data Transfer Object for user
+ * @author rudy
+ *
+ */
 @Setter
 @Getter
 public class UserDTO {
@@ -16,6 +21,10 @@ public class UserDTO {
 	private String phone;
 	private String email;
 	
+	/**
+	 * Construct a reservation with data from user pojo
+	 * @param user User POJO
+	 */
 	public UserDTO(User user) {
 		this.id             = user.getId();
 		this.name           = user.getName();
